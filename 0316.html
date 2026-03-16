@@ -1,0 +1,73 @@
+<html>
+<head>
+      <title>0316-css選擇器與顏色設定</title>
+      <!-- HTML註解-->
+      <style>
+         /*css註解*/
+          /* css語法
+         選擇器 selector {
+          屬性:設定值;
+          屬性:設定值;
+          屬性:設定值;
+          屬性:設定值;
+         }
+          
+              選擇器的類型: #id / .calss / html_tag
+              */
+              
+            div {
+                width:200px;
+                height:200px;
+                display:inline-block;
+                background: pink;
+            }
+           span{
+             width:200px;
+             height:200px;
+             display: inline-block;
+             background: green;
+           }
+            /*後寫的設定會覆蓋先寫的*/
+            #d1 {
+                background: rgb(38, 112, 3);
+                background-color: black;
+
+           }
+           /*後寫的設定會覆蓋先寫的 與寫在class的順序無關 */
+           .c1{
+              background: red !important; /*強制執行重要的東西，排序最高*/
+
+           }
+           .c2{
+            background: #FF00FF;
+            background: rgb(56,87,255 ,0.5);
+            background: hsla(177, 100%, 47%, 0.671);
+        }
+            /* css顏色
+             1. 常見英文單字
+             2. #RRGGBB #000000~#FFFFFFF  色碼:標準寫法
+             3. rgb (r,g,b) 0~255
+             4. hsl(h色相0~360,s彩度0%~100%,l亮度0%~100% )
+             5. rgba(r,g,b,a 0~1可見度)
+             6. hsla(h,s,l,a 0~1可見度)
+             */
+           
+
+
+      </style>
+</head>
+<body>
+    <!-- 區塊元素block -->
+    <div id="d1" class="c1"></div>
+    <div id="d2" class="c2 c1"></div>
+
+
+    <!--行內容器 -->
+    <span id="s1" class="c2"></span>
+    <span id="s2" class="c2 c1"></span>
+
+
+
+
+</body>
+</html>
