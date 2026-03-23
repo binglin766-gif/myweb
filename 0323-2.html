@@ -1,0 +1,131 @@
+<html>
+<head>
+<title>0323-css動畫</title>
+    <style>
+        div {
+            margin-bottom: 10px;
+            width: 400px;
+            height: 100px;
+            display: inline-block;
+        }
+        @keyframes kd1 {
+            0%{background: linear-gradient(0deg, red,blue);}
+            8%{background: linear-gradient(30deg, red,blue);}
+            17%{background: linear-gradient(60deg, red,blue);}
+            25%{background: linear-gradient(90deg, red,blue);}
+            33%{background: linear-gradient(120deg, red,blue);}
+            42%{background: linear-gradient(150deg, red,blue);}
+            50%{background: linear-gradient(180deg, red,blue);}
+            58%{background: linear-gradient(210deg, red,blue);}
+            67%{background: linear-gradient(240deg, red,blue);}
+            75%{background: linear-gradient(270deg, red,blue);}
+            83%{background: linear-gradient(300deg, red,blue);}
+            92%{background: linear-gradient(330deg, red,blue);}
+            100%{background: linear-gradient(360deg, red,blue);}
+        }
+            
+            
+            #d1 {
+            background: linear-gradient(90deg, red,blue);
+            animation: kd1 0.5s infinite linear;
+        }
+        @keyframes kd2 {
+         0%{background: linear-gradient(90deg, red,orange,yellow,green,blue,indigo,violet);}
+         15%{background: linear-gradient(90deg, orange,yellow,green,blue,indigo,violet,red);}
+         29%{background: linear-gradient(90deg, yellow,green,blue,indigo,violet,red,orange);}
+         43%{background: linear-gradient(90deg, green,blue,indigo,violet,red,orange,yellow);}
+         57%{background: linear-gradient(90deg, blue,indigo,violet,red,orange,yellow,green);}
+         71%{background: linear-gradient(90deg, indigo,violet,red,orange,yellow,green,blue);}
+         86%{background: linear-gradient(90deg, violet,red,orange,yellow,green,blue,indigo);}
+         100%{background: linear-gradient(90deg, red,orange,yellow,green,blue,indigo,violet);}
+        
+        
+            }
+        #d2{
+             width: 400px;
+             height: 100px;
+             background: linear-gradient(90deg, red,orange,yellow,green,blue,indigo,violet);
+             animation: kd2 0.5s infinite linear;
+            }
+        #d3 {
+            background: linear-gradient(90deg, red 30%,white 30%,white 70%,blue 70%);
+        }
+        @keyframes kd3 {
+       0%{ background: repeating-linear-gradient(45deg,blue 15%,red 30%, white 35%,green 40%,white 45%, red 50%);}
+       25%{ background: repeating-linear-gradient(45deg,red 30%, white 35%,green 40%,white 45%, red 50%,blue 15%);}
+       50%{ background: repeating-linear-gradient(45deg, white 35%,green 40%,white 45%, red 50%,blue 15%,red 30%);}
+       75%{ background: repeating-linear-gradient(45deg,green 40%,white 45%, red,blue 15%,red 30%, white 35%);}
+       100%{ background: repeating-linear-gradient(45deg,blue 15%,red 30%, white 35%,green 40%,white 45%, red 50%);}
+        }
+        
+        
+        
+        
+        #d4{
+            background: repeating-linear-gradient(45deg,blue 15%,red 30%, white 35%,green 40%,white 45%, red 50%);
+            animation: kd3 0.5s infinite linear;
+        }
+        /* radial-gradient 輻射狀漸層 
+           預設會隨容器寬高變形，圓心到最遠點
+           第一個參數加上circle，會無視容器寬高，強制使用圓形效果
+        
+        
+        */
+        @keyframes kr1 {
+            0%{background: radial-gradient(circle,red , yellow ,white ,black );}
+            25%{background: radial-gradient(circle,yellow ,white,black ,red );}
+            50%{background: radial-gradient(circle,white ,black ,red , yellow );}
+            70%{background: radial-gradient(circle, black ,red , yellow ,white );}
+            100%{background: radial-gradient(circle,red , yellow ,white ,black );}
+            
+        }
+        
+        
+        #r1 {
+             width: 400px;
+             height: 200px;
+            background: radial-gradient(circle,red 1%, yellow 3%,white 5%,black 30%);
+            animation: kr1 1s infinite linear;
+        }  
+        #r2 {
+             width: 400px;
+             height: 200px;
+            background:repeating-radial-gradient(circle, rgb(255, 228, 155),rgb(255, 204, 0));
+        }  
+        /* conic-gradient 圓錐漸層 */
+        
+        
+        #c1{ 
+            height: 200px;
+            background: conic-gradient(rgb(255, 0, 0),rgb(1, 88, 202),rgb(0, 248, 0),red);
+        }
+        #c2{
+            height: 200px;
+            background: repeating-conic-gradient(red 10%,rgb(255, 253, 111) 15%,red 20%)
+        }
+
+        
+ 
+
+
+
+    </style>
+
+</head>
+  <body>
+   <div id="d1"></div>
+   <div id="d2"></div>
+   <div id="d3"></div>
+   <div id="d4"></div>
+   
+   <div id="r1"></div>
+   <div id="r2"></div>
+
+   <div id="c1"></div>
+   <div id="c2"></div>
+</body>
+</html>  
+
+
+
+
