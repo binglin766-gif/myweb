@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <title>0427-javascript元素控制</title>
+                <style>
+                    .dv{
+                        display: inline-block;
+                        width: 100px;
+                        height: 80px;
+                        margin: 5px;
+                        border: 1px solid black ;
+                        border-radius: 5px;
+                    }
+                        
+
+                    
+                        
+                    
+
+
+                    .selected{
+                        border-color: red;
+                        border-width: 2px;
+                        box-shadow: 0px 0px 5px;
+                    }
+                </style>
+                <script>
+                   
+                   
+                    function choose(elm) {
+                        //elm.style.borderColor="red";
+                       if(elm.classList.contains("selected")){
+                         elm.classList.remove("selected"); }
+                         else{
+                            elm.classList.add("selected")
+                         }
+
+                          
+                       
+                        }
+                    function set() {
+                            Array.from(document.getElementsByClassName("selected")).forEach((a)=>{
+                                a.style.backgroundColor=event.target.value;
+                                a.classList.remove("selected");
+                            
+                       });
+                        
+                    }
+                    //////////////////////////////////////////////////////
+                    my={elm:null};
+                    function pick(elm){
+                       if(my.elm != null){
+                        my.elm.classList.remove("selected")
+                       }
+                        elm.classList.add("selected")
+                        my.elm=elm;
+
+                    }
+                    function set1() {
+                        my.elm.style.backgroundColor=event.target.value;
+                        my.elm.classList.remove("selected");
+                        
+                    }
+                    function setround( ) {
+                        my.elm.style.borderRadius = event.target.value + "px";
+                        my.elm.classList.remove("selected");
+                    }
+                </script>
+
+
+    </head>
+        <body>
+            <div class="dv" id="d1" onclick="choose(this);"></div>
+            <div class="dv" id="d2" onclick="choose(this);"></div>
+            <div class="dv" id="d3" onclick="choose(this);"></div>
+            <div class="dv" id="d4" onclick="choose(this);"></div>
+            
+            <div><input type="color" oninput="set()"></div>
+                 <hr>
+            <div class="dv" id="d1" onclick="pick(this);"></div>
+            <div class="dv" id="d2" onclick="pick(this);"></div>
+            <div class="dv" id="d3" onclick="pick(this);"></div>
+            <div class="dv" id="d4" onclick="pick(this);"></div>
+            
+            <div><input type="color" oninput="set1()">
+                 <input type="range" max=70 oninput="setround()">
+            </div>
+            
+
+
+
+        </body>
+
+
+
+
+</html>
