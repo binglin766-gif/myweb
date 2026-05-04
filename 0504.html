@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>0504-亂數與計時器</title>
+    <style>
+        #lot{
+            font-size: 100px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }    
+
+        #dice{
+            display: block;
+            margin: 20px;
+        }
+    
+    </style>
+        
+    
+    <script>
+        function getRand(min,max){
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        function getLot(){
+            setTimeout(clearInterval,  3000,  setInterval(()=>{
+                document.getElementById("lot").innerHTML = getRand(1,99);
+            },50));
+        }
+        function dice(){
+        
+        setTimeout(clearInterval,  3000,  setInterval((img)=>{
+                img.src=`pic/dice${getRand(1,6)}.png`
+            },50,event.target));
+        
+        ;//(event.target.src="pic/" + n + ".png";)
+        }
+            
+            
+    </script>
+    </head>
+        <body>
+            <button onclick="getLot()">抽籤</button>
+            <div id="lot">99</div>
+            <hr>
+           
+            <img id="dice" src="pic/diceQ.png" width="100px" onclick="dice();">
+        </body>
+
+</html>
