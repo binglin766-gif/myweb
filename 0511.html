@@ -1,0 +1,136 @@
+<html>
+    <head>
+        <title>0511-元素產生與消失</title>
+        <style>
+            #timebar {
+                width: 600px;
+                height: 10px;
+                background-color: rgb(9, 221, 9);
+                margin: 4px;
+                border: 2px solid black;
+            }
+            
+            
+            
+            
+            #board{
+                width: 600px;
+                height: 600px;
+                border: 1px solid black;
+                position: relative;
+                left: 4.5px;
+            }
+            .circle{
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                position: absolute;
+                
+            }
+        
+        
+        
+        
+        
+        
+        
+        </style>
+            <script>
+                var game_started=false;
+                var game_timer=[];
+                var game_second=30;
+                var game_score=0;
+                
+                function gameStart(){
+                    if(game_started) return;
+                    game_started=true;
+                    game_score=0;
+                    game_timer.push(setInterval(()=>{
+                    if(game_second<=0) gameStop();
+                    game_second-=0.01;    
+                    document.getElementById("timebar").style.width=(game_second * 20 + "px");
+                    if(game_second < 10){
+                    document.getElementById("timebar").style.backgroundColor="red";
+                    }
+                    },10));
+                    game_timer.push(setInterval(create,500));
+                    
+           
+            }
+            function gameStop() {
+                 game_started=false;
+                game_timer.forEach((t)=>{clearInterval(t)});
+            Array.from(document.getElementsByClassName("target")).forEach((a)=>{
+                a.remove();
+            });
+            
+            
+            }    
+                
+            
+            
+            
+            
+            function create(){
+                var a=document.createElement("div");
+                a.className="target";
+                a.score=getrand(1,3);
+                a.w=110-a.score*30;
+                a.h=110-a.score*30;
+                a.style.width=a.w+ "px";
+                a.style.height=a.h + "px";
+                a.style.top=getrand(0,600-a.h)+"px";
+                a.style.left=getrand(0,600-a.w)+"px";
+                a.style.backgroundColor=`rgb(${getrand(0,255)},${getrand(0,255)},${getrand(0,255)})`;
+                a.addEventListener("click",hit);
+                document.getElementById("board").appendChild(a);
+            }
+                
+                
+            
+                
+                
+                
+          
+            
+            
+            
+            
+            
+            
+            function getrand(min,max){
+                return Math.floor(Math.random()*(max-min+1))+min;
+
+            }
+            function hit() {
+                if(!game_started) return;
+                var elm=event.target;
+                elm.remove();
+                game_score++;
+                document.getElementById("score").innerHTML=game_score;
+            }
+            
+            
+            
+            
+            </script>
+    
+    
+    
+    </head>
+        <body>
+             <div id="point">得分:<span id="score">0</span>P</div>
+            <div id="timebar"></div>
+            <div id="board" onclick="gameStart();">
+                <div id="target"></div>
+            </div>
+            
+            
+           
+
+
+        </body>
+
+
+
+</html>
