@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <title>0518-鍵盤控制人物移動</title>
+
+        <style>
+            body{
+                background: url("pic/grass.jpg");
+                background-size: 300px 210px;
+            }
+            
+            @keyframes walk {
+                0%{background-position-x:0px;}
+                100%{background-position-x:-144px;}
+               
+            }
+            
+            
+            
+            #role{
+                width: 48px;
+                height: 72px;
+                background: url("pic/sprite.png");
+                animation: walk 700ms steps(3) infinite;
+                position: absolute;
+
+
+            }
+        
+        
+        </style>
+        <script>
+       
+        function ku() {
+            var role=document.getElementById("role")
+            role.way[event.key]=false;
+            role.style.animationPlayState="paused";
+        }
+        
+        function kd(){
+                console.log("down;"+event.key);
+                event.preventDefault();
+                var role=document.getElementById("role")
+                if(event.key=="ArrowDown"){
+                    role.style.backgroundPositionY="0px"
+                    role.pos.y++;
+                }
+                else if(event.key=="ArrowLeft"){
+                    role.style.backgroundPositionY="-72px"
+                  if(role.pos.x > 0) role.pos.x--;
+                }
+                else if(event.key=="ArrowRight"){
+                    role.style.backgroundPositionY="-144px"
+                    role.pos.x++;
+                }
+                else if(event.key=="ArrowUp"){
+                    role.style.backgroundPositionY="-216px"
+                  if(role.pos.y > 0) role.pos.y--;
+                }
+                role.style.top=role.pos.y+"px";
+                 role.style.left=role.pos.x+"px";
+                role.way[event.key]=true;
+                role.style.animationPlayState="running"
+           
+           
+            }
+        function init(){
+        var role=document.getElementById("role"); 
+        role.pos={x:0,y:0};
+        role.way={"ArrowDown":0,"ArrowLeft":0,"ArrowRight":0,"ArrowUp":0};
+        role.style.top=role.pos.y+"px";
+        role.style.left=role.pos.x+"px";
+        setInterval(role_mv,500);   
+        }    
+        function role_mv() {
+            var role=document.getElementById("role");
+            role.pos.y++;
+            if(role.way["ArrowDown"]){
+                role.pos.y++;
+            }
+            else if(role.way["ArrowLeft"]){
+                if(role.pos.x > 0) role.pos.x--;
+            }
+            else if(role.way["ArrowRight"]){
+                role.pos.x++;
+            } 
+             else if(role.way["ArrowUp"]){
+                if(role.pos.y > 0) role.pos.y--;
+             }
+                role.style.top=role.pos.y+"px";
+        role.style.left=role.pos.x+"px";
+        }
+        
+        
+        
+    
+    
+    
+    
+        </script>
+    </head>
+
+    
+    
+    
+    <body onkeydown="kd();" onload="init();" onkeyup="ku">
+    <div id="role"></div>
+
+
+
+
+    </body>
+
+
+
+
+</html>
