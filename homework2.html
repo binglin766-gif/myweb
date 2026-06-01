@@ -1,0 +1,176 @@
+<html>
+    <head>
+        <title>剪刀石頭布</title>
+
+    </head>
+        <style>
+            body{
+                background-color: rgba(149, 149, 150, 0.822);
+
+            }
+            button{
+                background-color: white;
+                border: 2px solid black;
+                border-radius: 12px;
+                margin: 10px;
+                transition: 0.4s;
+            }
+            button:hover{
+                border-color: rgb(0, 153, 255);
+                transform: scale(1.2);
+            }
+            .score_board{
+                background-color: white;
+                border: 1px solid black;
+                border-radius: 8px;
+                padding: 15px;
+                 margin-bottom: 30px;
+                box-shadow: 0 2px 5px ;
+            }   
+            .score_board p {
+            margin: 5px 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+           
+        
+        
+        
+        
+        
+        </style>
+        <body>
+        <h2>剪刀石頭布</h2>
+        <!--統計-->
+        <div class="score_board">
+            <p>勝場 <span id="wins" >0</span>| 敗場 <span id="lose" >0</span> | 平局 <span id="tie" >0</span> </p> 
+            <p>連勝 <span id="streak"></span> | 最佳連勝 <span id="maxstreak">0</span></p>
+            <p>勝率 <span id="rate">0%</span></p>
+        </div>
+        
+        
+        
+        
+        
+        <!--按鈕-->
+        <button id="stone">
+            <img src="pic/stone.jpg" width="80">
+                <p>石頭</p>
+        </button>
+        <button id="scissor">
+            <img src="pic/scissors.png" width="80">
+               <p>剪刀</p> 
+        </button>
+        <button id="paper">
+            <img src="pic/paper.png" width="80">
+                <p>布</p>
+        </button>
+        <!--結果-->
+            <div class="result">
+                <p>你出了:<span id="your"></span></p>
+                <p>他出了:<span id="his"></span></p>
+                <h2 id="game_result">請出拳!!!!</h2>
+            </div>
+        
+        
+        
+        
+        
+        <script>
+            //常數
+            const pd = document.getElementById('your')
+            const cd = document.getElementById('his')
+            const rd = document.getElementById('game_result')
+            
+            const wd = document.getElementById('wins')
+            const ld = document.getElementById('lose')
+            const td = document.getElementById('tie')
+            const sd = document.getElementById('streak')
+            const md = document.getElementById('maxstreak')
+            const rad = document.getElementById('rate')
+            
+            //紀錄
+            let w = 0;
+            let l = 0;
+            let t = 0;
+            let s = 0;
+            let m = 0;
+            
+
+
+            document.getElementById('stone').addEventListener('click',()=>{
+                pd.textContent = '石頭';
+                playGame('石頭');    
+            });
+             document.getElementById('paper').addEventListener('click',()=>{
+                 pd.textContent = '布';
+                playGame('布');    
+            });
+             document.getElementById('scissor').addEventListener('click',()=>{
+                 pd.textContent = '剪刀';
+                playGame('剪刀');    
+            });
+            //gamestart
+            function playGame(your){
+                const choices = ['剪刀','石頭','布']
+                //產生 0 ~ 2
+                const random =  Math.floor(Math.random()*3)
+                const his  = choices[random]
+                
+                cd.textContent = his;
+                //裁判
+                if (your == his){
+                    rd.textContent = '平手! 🤝';
+                    t++
+                    s = 0
+                }
+                else if (
+                    your == '石頭' && his == '剪刀' || 
+                    your == '剪刀' && his == '布'||
+                    your == '布' && his == '石頭'
+                ) {
+                    rd.textContent = 'YOU WIN! 🎉'
+                    w++
+                    s++
+                    if(s > m ){
+                        m = s
+                    }
+                }
+                else {
+                    rd.textContent='YOU LOSE! 👎'
+                    l++
+                    s = 0
+                }
+            //勝率
+            const total = w + l + t
+            const wr = total > 0 ? Math.round((w/total) * 100) : 0;
+            
+            wd.textContent = w
+            ld.textContent = l
+            td.textContent = t
+            sd.textContent = s
+            md.textContent = m
+            rad.textContent = wr + "%"
+            
+            
+            }
+             </script>
+    </body>
+   
+            
+   
+   
+   
+   
+   
+   
+      
+    
+    
+    
+   
+
+
+
+
+</html>
